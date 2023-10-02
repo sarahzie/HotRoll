@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="boxicons/css/boxicons.min.css">
+    <!--<link rel="stylesheet" href="boxicons/css/boxicons.min.css">-->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="logIn.css">
-    <title>Hot & Roll | Login & Registration</title>
+    <title>Hot & Roll | Login & Registration</title> 
 </head>
 <body>
 
@@ -35,23 +35,24 @@
                 <header>Login</header>
             </div>
             <div class="input-box">
-                <input type="text" class="input-field" placeholder="Email" id="email">
+                <input type="text" class="input-field" placeholder="Email" id="email_login">
                 <i class="bx bx-user"></i>
             </div>
             <div class="input-box">
-                <input type="password" class="input-field" placeholder="Password" id="password">
+                <input type="password" class="input-field" placeholder="Password" id="password_login">
                 <i class="bx bx-lock-alt"></i>
             </div>
             <div class="input-box">
-                <input type="submit" class="submit" value="Sign In" onclick="login()">
+                <input type="button" class="submit" value="Sign In" onclick="login()">
             </div>
             <div class="two-col">
+                <!--
                 <div class="one">
                     <input type="checkbox" id="login-check">
                     <label for="login-check"> Remember Me</label>
-                </div>
+                </div>-->
                 <div class="two">
-                    <label><a href="#">Forgot password?</a></label>
+                    <label><a href="Forgot Password\forgot.html">Forgot password?</a></label>
                 </div>
             </div>
         </div>
@@ -72,16 +73,17 @@
                 </div>
             </div>
             <div class="input-box">
-                <input type="text" class="input-field" placeholder="Email" id="email">
+                <input type="text" class="input-field" placeholder="Email" id="email_register">
                 <i class="bx bx-envelope"></i>
             </div>
             <div class="input-box">
-                <input type="password" class="input-field" placeholder="Password" id="password">
+                <input type="password" class="input-field" placeholder="Password" id="password_register">
                 <i class="bx bx-lock-alt"></i>
             </div>
             <div class="input-box">
-                <input type="submit" class="submit" value="Register" onclick="register()">
+                <input type="button" class="submit" value="Register" onclick="register()">
             </div>
+            <!--
             <div class="two-col">
                 <div class="one">
                     <input type="checkbox" id="register-check">
@@ -90,7 +92,7 @@
                 <div class="two">
                     <label><a href="#">Terms & conditions</a></label>
                 </div>
-            </div>
+            </div>-->
         </div>
     </div>
 </div>   
@@ -130,13 +132,12 @@
     }
 </script>
 </body>
-<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 
-    <!-- TODO: Add SDKs for Firebase products that you want to use
-         https://firebase.google.com/docs/web/setup#available-libraries -->
-    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
-    <!-- Our script must be loaded after firebase references -->
-    <script src="index.js"></script>
+// ...
+
+<script src="function.js"></script>
 </html>
