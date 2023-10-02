@@ -54,35 +54,38 @@ table.center {
 	<a href="LogIn.html" class="w3-bar-item w3-button w3-hover-red">Sign In/Up</a>
   </div>
 </div>
-<h1>The Menu</h1>
 
 <div class="w3-container w3-black  w3-xxxlarge" id="menu">
-<table class="center">
-  <tr> 
-    <td >Name</td>
-    <td class="w3-tag style="background-color:#FF0000">Price</td>
-  </tr><br>
-  <tr> 
-    <td >BBQ Chicken</td><br>
-    <td class="w3-tag w3-red w3-round">RM13.20</td>
-  </tr>
-  <tr> 
-    <td>Black Pepper Chicken</td>
-    <td class="w3-tag w3-red w3-round">RM10.00</td>
-  </tr>
-  <tr>
-    <td>Chicken Cheese</td>
-    <td class="w3-tag w3-red w3-round">RM10.00</td>
-  </tr>
-   <tr>
-    <td>Chicken Floss</td>
-    <td class="w3-tag w3-red w3-round">RM10.00</td>
-  </tr>
-   <tr>
-    <td>Pizza Beef</td>
-    <td class="w3-tag w3-red w3-round">RM13.20</td>
-  </tr>
-</table> 
+  <h1 style="color: #dddddd;">The Menu</h1>
+  <table class="center">
+    <thead style="text-align: left;">
+      <th>No</th>
+      <th>Name</th>
+      <th class="w3-tag style=" background-color:#FF0000>Price</td>
+    </thead>
+    <tbody class="center" id="tbody1">
+      <!--<tr> 
+        <td>BBQ Chicken</td><br>
+        <td class="w3-tag w3-red w3-round">RM13.20</td>
+      </tr>
+      <tr> 
+        <td>Black Pepper Chicken</td>
+        <td class="w3-tag w3-red w3-round">RM10.00</td>
+      </tr>
+      <tr>
+        <td>Chicken Cheese</td>
+        <td class="w3-tag w3-red w3-round">RM10.00</td>
+      </tr>
+      <tr>
+        <td>Chicken Floss</td>
+        <td class="w3-tag w3-red w3-round">RM10.00</td>
+      </tr>
+      <tr>
+        <td>Pizza Beef</td>
+        <td class="w3-tag w3-red w3-round">RM13.20</td>
+      </tr>-->
+    </tbody>
+  </table> 
 </div>
 
 <!-- Menu Container 
@@ -120,24 +123,31 @@ table.center {
   </div>
 </div>-->
 
-<script>
-// Tabbed Menu
-function openMenu(evt, menuName) {
-  var i, x, tablinks;
-  x = document.getElementsByClassName("menu");
-  for (i = 0; i < x.length; i++) {
-     x[i].style.display = "none";
-  }
-  tablinks = document.getElementsByClassName("tablink");
-  for (i = 0; i < x.length; i++) {
-     tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
-  }
-  document.getElementById(menuName).style.display = "block";
-  evt.currentTarget.firstElementChild.className += " w3-red";
-}
-document.getElementById("myLink").click();
-</script>
+  <script>
+    // Tabbed Menu
+    function openMenu(evt, menuName) {
+      var i, x, tablinks;
+      x = document.getElementsByClassName("menu");
+      for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablink");
+      for (i = 0; i < x.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+      }
+      document.getElementById(menuName).style.display = "block";
+      evt.currentTarget.firstElementChild.className += " w3-red";
+    }
+    document.getElementById("myLink").click();
+  </script>
 
 </body>
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+  https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+  <!-- Our script must be loaded after firebase references -->
+  <script src="menu.js"></script>
 </html>
 
