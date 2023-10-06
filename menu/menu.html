@@ -9,30 +9,121 @@
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
 <style>
-body, html {height: 100%; background-color: #000000;}
-body,h1 {font-family: "Amatic SC", sans-serif}
-.menu {display: none}
-.bgimg {
-  background-repeat: no-repeat;
-  background-size: cover;
-  min-height: 100%;
-  background-color: #dddddd;
-}
+body,html {
+    height: 50%; 
+	background: url("image.png");
+	background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+	scroll-behavior: smooth;
+	}
+	
+body,h1 {font-family: sans-serif}
+
 table {
-  font-family: "Amatic SC",sans-serif;
-  border-collapse: collapse;
-  width: 50%;
+	font-family: sans-serif;
+	font-size: 30px;
+	border-collapse: collapse;
+	width: 60%;
+	color: #B40404;
+	margin-bottom: 50px;
+}
+section{
+    width: 100%;
+}
+
+section nav{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+    right: 0;
+    left: 0;
+    background: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    z-index: 1000;
+}
+
+section nav .logo img{
+    width: 100px 0;
+	height: 90px ;
+    cursor: pointer;
+    margin: 1px ;
+}
+
+section nav ul{
+    list-style: none;
+}
+
+section nav ul li{
+    display: inline-block;
+    margin: 0 15px;
+}
+
+section nav ul li a{
+    text-decoration: none;
+    color: #000;
+    font-weight: 500;
+    font-size: 17px;
+    transition: 0.1s;
+}
+
+section nav ul li a::after{
+    content: '';
+    width: 0;
+    height: 2px;
+    background: #CC0000;
+    display: block;
+    transition: 0.2s linear;
+}
+
+section nav ul li a:hover::after{
+    width: 100%;
+}
+
+section nav ul li a:hover{
+    color: #CC0000;
+}
+section nav .icon i{
+    font-size: 18px;
+    color: #000;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+section nav .icon i:hover{
+    color: #CC0000;
 }
 
 td {
-  
-  text-align: left;
-  padding: 5px;
+   background: #FBFBEF;
+   text-align: left;
+   color: #B40404;
+   padding: 5px; 
+   border-style:solid;
+   border-color: #FBFBEF;
 }
 
-tr:nth-child {
-  background-color: #dddddd;
+
+th{
+   color: #B40404;
+   background-color: #FBFBEF;
+   border-style:solid;
+   border-color: #B40404;
+  
 }
+
+h1{
+   margin-top: 120px;
+    color: #CC0000;
+    margin-right: 15px;
+    font-family: mv boli;
+}
+tr:nth-child {
+  background-color: #FBFBEF;
+  }
+  
 table.center {
   margin-left: auto;
   margin-right: auto;
@@ -41,25 +132,47 @@ table.center {
 </head>
 <body>
 
+ <section id="Home">
+        <nav>
+            <div class="logo">
+                <img src="logo.png">
+            </div>
 
-<!-- Navbar (sit on top) -->
+            <ul>
+                <li><a href="#Home">Home</a></li>
+                <li><a href="#Menu">Menu</a></li>
+				<li><a href="#Staff">Staff</a></li>
+                <li><a href="#Customer">Customer</a></li>
+				<li><a href="LogIn.html" class="link">Sign In/Up</a></li>
+		
+            </ul>
+			
+            <div class="icon">
+				 <i><a href="profile.html"><i class="fa-solid fa-user"></i></a>
+                <i class="fa-solid fa-heart"></i>
+                <i class="fa-solid fa-cart-shopping"></i>
+            </div>
+
+        </nav>
+	</section>
+<!-- Navbar (sit on top) 
 <div class="w3-top w3-hide-small">
   <div class="w3-bar w3-xlarge w3-white w3-container " id="myNavbar">
-    <a href="index.html" class="w3-bar-item w3-button w3-hover-red"><b>Home</a>
+    <a href="index.html" class="w3-bar-item w3-button w3-hover-red">Home</a>
     <a href="#menu" class="w3-bar-item w3-button w3-hover-red">Menu</a>
     <a href="#Staff" class="w3-bar-item w3-button w3-hover-red">Staff</a>
 	<a href="#Customer" class="w3-bar-item w3-button w3-hover-red">Customer</a>
 	<a href="LogIn.html" class="w3-bar-item w3-button w3-hover-red">Sign In/Up</a>
   </div>
-</div>
+</div>-->
 
-<div class="w3-container w3-black  w3-xxxlarge" id="menu">
-  <h1 style="color: #dddddd;">The Menu</h1>
-  <table class="center">
+<div class="w3-container  w3-xxxlarge" id="menu">
+   <h1 class="w3-center w3-jumbo" >Menu</h1>
+  <table class="center" >
     <thead style="text-align: left;">
       <th>No</th>
       <th>Name</th>
-      <th class="w3-tag style=" background-color:#FF0000>Price</td>
+      <th>Price</th>
     </thead>
     <tbody class="center" id="tbody1">
       <!--<tr> 
@@ -85,6 +198,7 @@ table.center {
     </tbody>
   </table> 
 </div>
+
 
 <!-- Menu Container 
 <div class="w3-container w3-black w3-padding-64 w3-xxlarge" id="menu">
@@ -148,4 +262,3 @@ table.center {
   <!-- Our script must be loaded after firebase references -->
   <script src="menu.js"></script>
 </html>
-
