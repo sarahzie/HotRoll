@@ -196,10 +196,26 @@ section .main_btn:hover i{
     text-decoration: none;
     color: #fff;
     position: relative;
-    left: 51%;
+    left: 780px;
     bottom: 0px;
+	width: 150px;
+	 cursor: pointer;
 }
 
+.about .about_btn a{
+    color: #fff;
+    margin-right: 5px;
+    text-decoration: none;
+}
+
+.about .about_btn i{
+    color: #fff;
+    transition: 0.3s;
+}
+
+.about .about_btn:hover i{
+    transform: translateX(7px);
+}
 
 
 /*Menu*/
