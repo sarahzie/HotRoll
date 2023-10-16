@@ -138,14 +138,15 @@ section {
 }
 
 .contact-form .input-box span {
-  position: absolute;
+  position: relative;
   left: 0;
   padding: 5px 0;
   font-size: 16px;
   margin: 10px 0;
   pointer-events: none;
+  color: #CC0000;
   transition: 0.5s;
-  color: #666;
+ 
 }
 
 .contact-form .input-box input:focus ~ span,
