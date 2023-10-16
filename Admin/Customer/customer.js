@@ -82,7 +82,7 @@ function FillTboxes(index){
         ModUID.value = "";
         ModEmail.value = "";
         ModFirstName.value = "";
-        ModFirstName.value = "";
+        ModLastName.value = "";
         ButtonModAdd.style.display = 'inline-block';
         ButtonModDelete.style.display = 'none';
         ButtonModEdit.style.display = 'none';
@@ -100,11 +100,13 @@ function FillTboxes(index){
     }
 }
 
-function AddMenu(){
-    firebase.database().ref("menu/"+ count).set(
+function AddCustomer(){
+    firebase.database().ref("users/"+ ModUID.value).set(
         {
-            name: ModName.value,
-            price: ModPrice.value
+            email: ModEmail.value,
+            first_name: ModFirstName.value,
+            last_name: ModLastName.value,
+            uid: ModUID.value
         },
         (error) => {
             if(error){
@@ -112,18 +114,18 @@ function AddMenu(){
             }
             else{
                 alert("record was added");
-                SelectAllData();
+                location.reload();
                 $("exampleModalCenter").modal('hide');
             }
         }
     )
 }
 
-function EditMenu(){
-    firebase.database().ref("menu/"+ uid).update(
+function EditCustomer(){
+    firebase.database().ref("users/"+ ModUID.value).update(
         {
-            name: ModName.value,
-            price: ModPrice.value
+            first_name: ModFirstName.value,
+            last_name: ModLastName.value
         },
         (error) => {
             if(error){
@@ -131,19 +133,19 @@ function EditMenu(){
             }
             else{
                 alert("record was updated");
-                SelectAllData();
+                location.reload();
                 $("exampleModalCenter").modal('hide');
             }
         }
     )
 }
 
-function DeleteMenu(){
-    firebase.database().ref("menu/"+ uid).remove().then(
+function DeleteCustomer(){
+    firebase.database().ref("users/"+ ModUID.value).remove().then(
         function(){
             alert("record was deleted");
-            SelectAllData();
+            location.reload();
             $("exampleModalCenter").modal('hide');
         }
-    )
+    );
 }

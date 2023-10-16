@@ -49,6 +49,7 @@ function AddItemsToTable(uid,email,first_name,last_name,last_login){
     var td4 = document.createElement('td');
     var td5 = document.createElement('td');
     staffList.push([uid,email,first_name,last_name,last_login]);
+    console.log(staffList);
     td1.innerHTML = ++no;
     td2.innerHTML = email;
     td3.innerHTML = first_name;
@@ -82,7 +83,7 @@ function FillTboxes(index){
         ModUID.value = "";
         ModEmail.value = "";
         ModFirstName.value = "";
-        ModFirstName.value = "";
+        ModLastName.value = "";
         ButtonModAdd.style.display = 'inline-block';
         ButtonModDelete.style.display = 'none';
         ButtonModEdit.style.display = 'none';
@@ -103,8 +104,10 @@ function FillTboxes(index){
 function AddMenu(){
     firebase.database().ref("staff/"+ count).set(
         {
-            name: ModName.value,
-            price: ModPrice.value
+            uid: ModUID.value,
+            email: ModEmail.value,
+            first_name: ModFirstName.value,
+            last_name: ModLastName.value
         },
         (error) => {
             if(error){
@@ -122,8 +125,10 @@ function AddMenu(){
 function EditMenu(){
     firebase.database().ref("staff/"+ uid).update(
         {
-            name: ModName.value,
-            price: ModPrice.value
+            uid: ModUID.value,
+            email: ModEmail.value,
+            first_name: ModFirstName.value,
+            last_name: ModLastName.value
         },
         (error) => {
             if(error){

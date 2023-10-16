@@ -58,25 +58,25 @@
         </div>
         
         <div class="contact-form">
-          <form action="" id="contact-form">
+          <form action="" id="feedbackForm">
             <h2>Send Message/feedback</h2>
             <div class="input-box">
-              <input type="text" required="true" name="">
+              <input type="text" required="true" id="fullName">
               <span>Full Name</span>
             </div>
             
             <div class="input-box">
-              <input type="email" required="true" name="">
+              <input type="email" required="true" id="email">
               <span>Email</span>
             </div>
             
             <div class="input-box">
-              <textarea required="true" name=""></textarea>
+              <textarea required="true" id="message"></textarea>
               <span>Type your Message...</span>
             </div>
             
             <div class="input-box">
-              <input type="submit" value="Send" name="">
+              <input type="submit" value="Send" id="">
             </div>
           </form>
         </div>
@@ -84,6 +84,11 @@
       </div>
     </div>
   </section>
-  
 </body>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+<!-- TODO: Add SDKs for Firebase products that you want to use
+https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+<script src="contact.js"></script>
 </html>

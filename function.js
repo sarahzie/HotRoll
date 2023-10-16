@@ -113,12 +113,9 @@ function login () {
   
       // Push to Firebase Database
       database_ref.child('users/' + user.uid).update(user_data)
-  
-      // DOne
-      alert('User Logged In!!')
 
-      window.location.href = "index.html";
-  
+      alert('User Logged In!!');
+      window.location = "index.html";
     })
     .catch(function(error) {
       // Firebase will use this to alert of its errors
@@ -127,7 +124,7 @@ function login () {
   
       alert(error_message)
     })
-  }
+}
   
 
 function validate_email(email){

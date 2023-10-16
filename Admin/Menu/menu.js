@@ -96,7 +96,7 @@ function AddMenu(){
             }
             else{
                 alert("record was added");
-                SelectAllData();
+                location.reload();
                 $("exampleModalCenter").modal('hide');
             }
         }
@@ -115,7 +115,7 @@ function EditMenu(){
             }
             else{
                 alert("record was updated");
-                SelectAllData();
+                location.reload();
                 $("exampleModalCenter").modal('hide');
             }
         }
@@ -126,7 +126,7 @@ function DeleteMenu(){
     firebase.database().ref("menu/"+ count).remove().then(
         function(){
             alert("record was deleted");
-            SelectAllData();
+            location.reload();
             $("exampleModalCenter").modal('hide');
         }
     )

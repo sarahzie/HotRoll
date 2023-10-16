@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Customer List</title>
+<title>Feedback</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -24,7 +24,7 @@ body,h1 {font-family: sans-serif}
 
 table {
 	font-family: sans-serif;
-	font-size: 20px;
+	font-size: 25px;
 	border-collapse: collapse;
 	width: 60%;
 	color: #B40404;
@@ -160,19 +160,43 @@ table.center {
         </div>
     </nav>
   </section>
+<!--Modal Section-->
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">View Details</button>
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModID">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p id="ModName">[Name]</p>
+        <p id="ModEmail">[Email]</p>
+        <p id="ModMessage">[Feedback Message]</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
-<div class="w3-container  w3-xxxlarge" id="customer">
-  <h1 class="w3-center w3-jumbo" >Customer List</h1>
+<div class="w3-container  w3-xxxlarge" id="menu">
+   <h1 class="w3-center w3-jumbo" >Feedback</h1>
   <table class="center" >
     <thead style="text-align: left;">
       <th>No</th>
-      <th>Email</th>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Last Login</th>
+      <th>ID</th>
+      <th>Name</th>
       <th></th>
     </thead>
     <tbody class="center" id="tbody1">
+     
     </tbody>
   </table> 
 </div>
@@ -188,19 +212,15 @@ table.center {
         </button>
       </div>
       <div class="modal-body">
-        <label class="labs">UID: </label>
-        <input type="text" id="UIDMod"> <br>
-        <label class="labs">Email: </label>
-        <input type="text" id="EmailMod"> <br>
-        <label class="labs">First Name: </label>
-        <input type="text" id="FirstNameMod"> <br>
-        <label class="labs">Last Name: </label>
-        <input type="text" id="LastNameMod"> <br>
+        <label class="labs">Name: </label>
+        <input type="text" id="NameMod"> <br>
+        <label class="labs">Price: </label>
+        <input type="text" id="PriceMod"> <br>
       </div>
       <div class="modal-footer">
-        <button id="EditModButton" type="button" class="btn btn-success" onclick="EditCustomer()">Save changes</button>
-        <button id="AddModButton" type="button" class="btn btn-primary" onclick="AddCustomer()">Add New Record</button>
-        <button id="DeleteModButton" type="button" class="btn btn-danger" onclick="DeleteCustomer()">Delete Record</button>
+        <button id="EditModButton" type="button" class="btn btn-success" onclick="EditMenu()">Save changes</button>
+        <button id="AddModButton" type="button" class="btn btn-primary" onclick="AddMenu()">Add New Record</button>
+        <button id="DeleteModButton" type="button" class="btn btn-danger" onclick="DeleteMenu()">Delete Record</button>
         
       </div>
     </div>
@@ -232,7 +252,7 @@ table.center {
   <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
   <!-- Our script must be loaded after firebase references -->
-  <script src="customer.js"></script>
+  <script src="feedback.js"></script>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
