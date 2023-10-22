@@ -28,7 +28,7 @@ table {
 	border-collapse: collapse;
 	width: 60%;
 	color: #B40404;
-	margin-bottom: 50px;
+	margin-bottom: 20px;
   background-color: white;
 }
 section{
@@ -136,6 +136,11 @@ table.center {
   display: inline-block;
   width: 100px;
 }
+
+.addbutton{
+  float: right;
+  margin-right: 21%;
+}
 </style>
 </head>
 <body>
@@ -170,12 +175,16 @@ table.center {
       <th>First Name</th>
       <th>Last Name</th>
       <th>Last Login</th>
-      <th></th>
+      <th>Modify</th>
     </thead>
     <tbody class="center" id="tbody1">
      
     </tbody>
   </table> 
+</div>
+
+<div class="addbutton">
+  <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#exampleModalCenter" onclick="FillTboxes(null)">Add new Record</button>
 </div>
 
 <!-- Modal -->
@@ -189,42 +198,26 @@ table.center {
         </button>
       </div>
       <div class="modal-body">
-        <label class="labs">UID: </label>
+        <label class="labs" id="UIDLabel">UID: </label>
         <input type="text" id="UIDMod"> <br>
         <label class="labs">Email: </label>
         <input type="text" id="EmailMod"> <br>
+        <label class="labs">Password: </label>
+        <input type="text" id="PasswordMod"> <br>
         <label class="labs">First Name: </label>
         <input type="text" id="FirstNameMod"> <br>
         <label class="labs">Last Name: </label>
         <input type="text" id="LastNameMod"> <br>
       </div>
       <div class="modal-footer">
-        <button id="EditModButton" type="button" class="btn btn-success" onclick="EditMenu()">Save changes</button>
-        <button id="AddModButton" type="button" class="btn btn-primary" onclick="AddMenu()">Add New Record</button>
-        <button id="DeleteModButton" type="button" class="btn btn-danger" onclick="DeleteMenu()">Delete Record</button>
+        <button id="EditModButton" type="button" class="btn btn-success" onclick="EditStaff()">Save changes</button>
+        <button id="AddModButton" type="button" class="btn btn-primary" onclick="AddStaff()">Add New Record</button>
+        <button id="DeleteModButton" type="button" class="btn btn-danger" onclick="DeleteStaff()">Delete Record</button>
         
       </div>
     </div>
   </div>
 </div>
-
-  <script>
-    // Tabbed Menu
-    function openMenu(evt, menuName) {
-      var i, x, tablinks;
-      x = document.getElementsByClassName("menu");
-      for (i = 0; i < x.length; i++) {
-        x[i].style.display = "none";
-      }
-      tablinks = document.getElementsByClassName("tablink");
-      for (i = 0; i < x.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
-      }
-      document.getElementById(menuName).style.display = "block";
-      evt.currentTarget.firstElementChild.className += " w3-red";
-    }
-    document.getElementById("myLink").click();
-  </script>
 
 </body>
   <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>

@@ -28,7 +28,6 @@ table {
 	border-collapse: collapse;
 	width: 60%;
 	color: #B40404;
-	margin-bottom: 50px;
   background-color: white;
 }
 section{
@@ -136,6 +135,11 @@ table.center {
   display: inline-block;
   width: 100px;
 }
+
+.addbutton{
+  float: right;
+  margin-right: 20%;
+}
 </style>
 </head>
 <body>
@@ -162,7 +166,7 @@ table.center {
   </section>
 
 <div class="w3-container  w3-xxxlarge" id="menu">
-   <h1 class="w3-center w3-jumbo" >Menu</h1>
+  <h1 class="w3-center w3-jumbo" >Menu</h1>
   <table class="center" >
     <thead style="text-align: left;">
       <th>No</th>
@@ -170,12 +174,13 @@ table.center {
       <th>Price</th>
       <th>Modify</th>
     </thead>
-    <tbody class="center" id="tbody1">
-     
+    <tbody class="center" id="tbody1">  
     </tbody>
-  </table> 
+  </table>
+  <div class="addbutton">
+    <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#exampleModalCenter" onclick="FillTboxes(null)">Add new Record</button>
+  </div>
 </div>
-
 <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -187,6 +192,8 @@ table.center {
         </button>
       </div>
       <div class="modal-body">
+        <label class="labs">ID: </label>
+        <input type="text" id="IDMod"> <br>
         <label class="labs">Name: </label>
         <input type="text" id="NameMod"> <br>
         <label class="labs">Price: </label>

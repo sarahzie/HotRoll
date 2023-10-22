@@ -22,6 +22,44 @@ firebase.initializeApp(firebaseConfig);
 // Initialize variables
 const auth = firebase.auth()
 const database = firebase.database()
+const adminUIDList = [];
+const staffUIDList = [];
+
+firebase.database().ref('staff').once('value',
+      function(AllRecords){
+        AllRecords.forEach(
+            function(CurrentRecord){
+              var uid = CurrentRecord.val().uid;
+              console.log(uid);
+              staffUIDList.push(uid);
+            }
+        );
+});
+
+firebase.database().ref('admin').once('value',
+      function(AllRecords){
+        AllRecords.forEach(
+            function(CurrentRecord){
+              var uid = CurrentRecord.val().uid;
+              console.log(uid);
+              adminUIDList.push(uid);
+            }
+        );
+});
+
+function compareUIDAdmin(uid){
+  if(adminUIDList.includes(uid)==true){
+    return true;
+  }
+  return false;
+}
+
+function compareUIDStaff(uid){
+  if(staffUIDList.includes(uid)==true){
+    return true;
+  }
+  return false;
+}
 
 // register function
 function register () {
@@ -48,7 +86,8 @@ function register () {
         email : email,
         first_name : first_name,
         last_name : last_name,
-        last_login : Date.now()
+        last_login : Date.now(),
+        uid : uid
         }
   
         // Push to Firebase Database
@@ -76,15 +115,6 @@ function register () {
      });
 }
 
-function verify_email (){
-  firebase.auth().currentUser.sendEmailVerification()
-  .then(() => {
-    // Email verification sent!
-    alert('Verification email sent')
-    // ...
-  });
-}
-
 // Set up our login function
 function login () {
     // Get all our input fields
@@ -110,12 +140,26 @@ function login () {
       var user_data = {
         last_login : Date.now()
       }
-  
-      // Push to Firebase Database
-      database_ref.child('users/' + user.uid).update(user_data)
+      
+      if (compareUIDAdmin(user.uid)==true){
+        database_ref.child('admin/' + user.uid).update(user_data);
+        alert('Admin Logged In!!')
+        window.location = "Admin/Homepage/homepage.html"
+      }
 
-      alert('User Logged In!!');
-      window.location = "index.html";
+      else if (compareUIDStaff(user.uid)==true){
+        database_ref.child('staff/' + user.uid).update(user_data);
+        alert('Staff Logged In!!')
+        window.location = "Admin/Homepage/homepage.html"
+      }
+
+      else{
+        database_ref.child('users/' + user.uid).update(user_data);
+        alert('User Logged In!!');
+        window.location = "index.html";
+      }
+      // Push to Firebase Database
+      
     })
     .catch(function(error) {
       // Firebase will use this to alert of its errors
@@ -230,32 +274,134 @@ function reset_password(){
     // ..
   });
 }
-
+const user = auth.currentUser;
 function profile(){
-  var user = auth.currentUser
+  if (user !== null){
+    console.log(user);
+    var uid = user.uid;
+    if (compareUIDAdmin(uid)==true){
+      firebase.database().ref('admin/' + uid).once('value'),(snapshot)=>{
+        var email = snapshot.val().email;
+        var first_name = snapshot.val().first_name;
+        var last_name = snapshot.val().last_name;
+
+        document.getElementById('email').innerHTML = email;
+        document.getElementById('email_change').value = email;
+
+        document.getElementById('firstName').innerHTML = first_name;
+        document.getElementById('firstName_change').value = first_name;
+
+        document.getElementById('lastName').innerHTML = '&nbsp' + last_name;
+        document.getElementById('lastName_change').value = last_name;
+      }
+      return;
+    }
+    else if(compareUIDStaff(uid)==true){
+      firebase.database().ref('staff/' + uid).once('value'),(snapshot)=>{
+        var email = snapshot.val().email;
+        var first_name = snapshot.val().first_name;
+        var last_name = snapshot.val().last_name;
+
+        document.getElementById('email').innerHTML = email;
+        document.getElementById('email_change').value = email;
+
+        document.getElementById('firstName').innerHTML = first_name;
+        document.getElementById('firstName_change').value = first_name;
+
+        document.getElementById('lastName').innerHTML = '&nbsp' + last_name;
+        document.getElementById('lastName_change').value = last_name;
+      }
+      return;
+    }
+    else{
+      firebase.database().ref('users/' + uid).once('value'),(snapshot)=>{
+        var email = snapshot.val().email;
+        var first_name = snapshot.val().first_name;
+        var last_name = snapshot.val().last_name;
+
+        document.getElementById('email').innerHTML = email;
+        document.getElementById('email_change').value = email;
+
+        document.getElementById('firstName').innerHTML = first_name;
+        document.getElementById('firstName_change').value = first_name;
+
+        document.getElementById('lastName').innerHTML = '&nbsp' + last_name;
+        document.getElementById('lastName_change').value = last_name;
+      }
+    }
+  }
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
+      if (compareUIDAdmin(uid)==true){
+        firebase.database().ref('admin/' + uid).once('value'),(snapshot)=>{
+          var email = snapshot.val().email;
+          var first_name = snapshot.val().first_name;
+          var last_name = snapshot.val().last_name;
+
+          document.getElementById('email').innerHTML = email;
+          document.getElementById('email_change').value = email;
+
+          document.getElementById('firstName').innerHTML = first_name;
+          document.getElementById('firstName_change').value = first_name;
+
+          document.getElementById('lastName').innerHTML = '&nbsp' + last_name;
+          document.getElementById('lastName_change').value = last_name;
+        }
+        return;
+      }
+      else if(compareUIDStaff(uid)==true){
+        firebase.database().ref('staff/' + uid).once('value'),(snapshot)=>{
+          var email = snapshot.val().email;
+          var first_name = snapshot.val().first_name;
+          var last_name = snapshot.val().last_name;
+
+          document.getElementById('email').innerHTML = email;
+          document.getElementById('email_change').value = email;
+
+          document.getElementById('firstName').innerHTML = first_name;
+          document.getElementById('firstName_change').value = first_name;
+
+          document.getElementById('lastName').innerHTML = '&nbsp' + last_name;
+          document.getElementById('lastName_change').value = last_name;
+        }
+        return;
+      }
+      else{
+        firebase.database().ref('users/' + uid).once('value'),(snapshot)=>{
+          var email = snapshot.val().email;
+          var first_name = snapshot.val().first_name;
+          var last_name = snapshot.val().last_name;
+
+          document.getElementById('email').innerHTML = email;
+          document.getElementById('email_change').value = email;
+
+          document.getElementById('firstName').innerHTML = first_name;
+          document.getElementById('firstName_change').value = first_name;
+
+          document.getElementById('lastName').innerHTML = '&nbsp' + last_name;
+          document.getElementById('lastName_change').value = last_name;
+        }
+      }
       // User is signed in, see docs for a list of available properties
       // https://firebase.google.com/docs/reference/js/v8/firebase.User
-      var uid = user.uid;
-      var firstNameRef = firebase.database().ref('users/' + uid + '/first_name');
-      firstNameRef.on('value', (snapshot) => {
-        var firstNameData = snapshot.val();
-        document.getElementById('firstName').innerHTML = firstNameData
-        document.getElementById('firstName_change').value = firstNameData
-      });
-      var lastNameRef = firebase.database().ref('users/' + uid + '/last_name');
-      lastNameRef.on('value', (snapshot) => {
-        var lastNameData = snapshot.val();
-        document.getElementById('lastName').innerHTML = '&nbsp' + lastNameData
-        document.getElementById('lastName_change').value = lastNameData
-      });
-      var lastNameRef = firebase.database().ref('users/' + uid + '/email');
-      lastNameRef.on('value', (snapshot) => {
-        var emailData = snapshot.val();
-        document.getElementById('email').innerHTML = emailData
-        document.getElementById('email_change').value = emailData
-      });
+      // var firstNameRef = firebase.database().ref('users/' + uid + '/first_name');
+      // firstNameRef.on('value', (snapshot) => {
+      //   var firstNameData = snapshot.val();
+      //   document.getElementById('firstName').innerHTML = firstNameData
+      //   document.getElementById('firstName_change').value = firstNameData
+      // });
+      // var lastNameRef = firebase.database().ref('users/' + uid + '/last_name');
+      // lastNameRef.on('value', (snapshot) => {
+      //   var lastNameData = snapshot.val();
+      //   document.getElementById('lastName').innerHTML = '&nbsp' + lastNameData
+      //   document.getElementById('lastName_change').value = lastNameData
+      // });
+      // var lastNameRef = firebase.database().ref('users/' + uid + '/email');
+      // lastNameRef.on('value', (snapshot) => {
+      //   var emailData = snapshot.val();
+      //   document.getElementById('email').innerHTML = emailData
+      //   document.getElementById('email_change').value = emailData
+      // });
       // ...
     } else {
       // User is signed out

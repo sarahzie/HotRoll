@@ -8,19 +8,20 @@ const firebaseConfig = {
     appId: "1:820474583676:web:3f44f7f0554cd4c29287f9"
 }
 firebase.initializeApp(firebaseConfig);
-
-var count = 0;
+var count;
 var no;
 function SelectAllData(){
     document.getElementById("tbody1").innerHTML = "";
     no = 0;
+    count = 0;
     firebase.database().ref('menu').once('value',
     function(AllRecords){
         AllRecords.forEach(
             function(CurrentRecord){
+                var id = CurrentRecord.val().id;
                 var name = CurrentRecord.val().name;
                 var price = CurrentRecord.val().price;
-                AddItemsToTable(name,price);
+                AddItemsToTable(id,name,price);
                 count++;
             }
         );
@@ -36,13 +37,13 @@ window.onload = SelectAllData;
 
 var menuList = [];
 
-function AddItemsToTable(name,price){
+function AddItemsToTable(id,name,price){
     var tbody = document.getElementById('tbody1');
     var trow = document.createElement('tr');
     var td1 = document.createElement('td');
     var td2 = document.createElement('td');
     var td3 = document.createElement('td');
-    menuList.push([name,price]);
+    menuList.push([id,name,price]);
     td1.innerHTML = ++no;
     td2.innerHTML = name;
     td3.innerHTML = "RM" + price;
@@ -51,13 +52,13 @@ function AddItemsToTable(name,price){
     trow.appendChild(td3);
 
     var ControlDiv = document.createElement("div");
-    ControlDiv.innerHTML = '<button type="button" class="btn btn-success my-2 ml-2" data-toggle="modal" data-target="#exampleModalCenter" onclick="FillTboxes(null)">Add new Record</button>'
-    ControlDiv.innerHTML += '<button type="button" class="btn btn-primary my-2 ml-2" data-toggle="modal" data-target="#exampleModalCenter" onclick="FillTboxes('+no+')">Edit Record</button>'
+    ControlDiv.innerHTML = '<button type="button" class="btn btn-primary my-2 ml-2" data-toggle="modal" data-target="#exampleModalCenter" onclick="FillTboxes('+no+')">Edit Record</button>'
 
     trow.appendChild(ControlDiv);
     tbody.appendChild(trow);
 }
 
+var ModID = document.getElementById('IDMod');
 var ModName = document.getElementById('NameMod');
 var ModPrice = document.getElementById('PriceMod');
 var ButtonModAdd = document.getElementById('AddModButton');
@@ -67,26 +68,31 @@ var ButtonModEdit = document.getElementById('EditModButton');
 
 function FillTboxes(index){
     if(index==null){
+        ModID.value = "";
         ModName.value = "";
         ModPrice.value = "";
         ButtonModAdd.style.display = 'inline-block';
         ButtonModDelete.style.display = 'none';
         ButtonModEdit.style.display = 'none';
+        ModID.disabled = false;
     }
 
     else{
         --index;
-        ModName.value = menuList[index][0];
-        ModPrice.value = menuList[index][1];
+        ModID.value = menuList[index][0];
+        ModName.value = menuList[index][1];
+        ModPrice.value = menuList[index][2];
         ButtonModAdd.style.display = 'none';
         ButtonModDelete.style.display = 'inline-block';
         ButtonModEdit.style.display = 'inline-block';
+        ModID.disabled = true;
     }
 }
 
 function AddMenu(){
-    firebase.database().ref("menu/"+ count).set(
+    firebase.database().ref("menu/"+ ModID.value).set(
         {
+            id: ModID.value,
             name: ModName.value,
             price: ModPrice.value
         },
@@ -97,15 +103,15 @@ function AddMenu(){
             else{
                 alert("record was added");
                 location.reload();
-                $("exampleModalCenter").modal('hide');
             }
         }
     )
 }
 
 function EditMenu(){
-    firebase.database().ref("menu/"+ count).update(
+    firebase.database().ref("menu/"+ ModID.value).update(
         {
+            id: ModID.value,
             name: ModName.value,
             price: ModPrice.value
         },
@@ -116,18 +122,16 @@ function EditMenu(){
             else{
                 alert("record was updated");
                 location.reload();
-                $("exampleModalCenter").modal('hide');
             }
         }
     )
 }
 
 function DeleteMenu(){
-    firebase.database().ref("menu/"+ count).remove().then(
+    firebase.database().ref("menu/"+ ModID.value).remove().then(
         function(){
             alert("record was deleted");
             location.reload();
-            $("exampleModalCenter").modal('hide');
         }
     )
 }
