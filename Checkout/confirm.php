@@ -21,7 +21,7 @@
 				  </div>
 					<div>
 					    <br><input type="submit" class="button button--full" value="Back to Menu" onclick="window.location.href='../Customer/menu.html';"></button>
-						<br><input type="submit" class="button button--full" value="Proceed to Checkout" onclick="window.location.href='https://buy.stripe.com/test_00g9Dq5gPbJU5dCfYY';"></button>
+						<br><button type="submit" class="button button--full" onclick="AddOrder()">Proceed to Checkout</button>
 					</div>
 				</div>
 				</div>
@@ -39,6 +39,14 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     </script>
+	<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+
+	<!-- TODO: Add SDKs for Firebase products that you want to use
+		https://firebase.google.com/docs/web/setup#available-libraries -->
+	<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+	<!-- Our script must be loaded after firebase references -->
+	<script src="addOrder.js"></script>
 </html>
 <?php
 
