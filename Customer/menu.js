@@ -31,7 +31,7 @@ window.onload = SelectAllData;
 
 //<!-- Button trigger modal reference for copy pasting -->
 //<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" onclick="FillTboxes(null)">Add new Record</button>
-
+//<button type="button" class="btn btn-danger">Danger</button>
 //Filling the Table
 
 var menuList = [];
@@ -42,15 +42,24 @@ function AddItemsToTable(name,price){
     var td1 = document.createElement('td');
     var td2 = document.createElement('td');
     var td3 = document.createElement('td');
+    var td4 = document.createElement('td');
     menuList.push([name,price]);
     td1.innerHTML = ++no;
     td2.innerHTML = name;
-    td3.innerHTML = "RM" + price;
+    td3.innerHTML = 'RM' + price;
+    td4.innerHTML = '<a class="btn btn-primary" href="../Checkout/confirm.php" role="button" onclick="sendCheckoutInfo('+no+')">Buy now</a>';
     trow.appendChild(td1);
     trow.appendChild(td2);
     trow.appendChild(td3);
+    trow.appendChild(td4);
     tbody.appendChild(trow);
 }
 
 var ModName = document.getElementById('NameMod');
 var ModPrice = document.getElementById('PriceMod');
+
+function sendCheckoutInfo(index){
+    --index;
+    sessionStorage.setItem("name", menuList[index][0]);
+    sessionStorage.setItem("price", menuList[index][1]);
+}
