@@ -70,6 +70,7 @@ section nav ul li a:hover{
 
 section nav .icon i{
     font-size: 18px;
+	 font-family: sans-serif;
     color: #000;
     margin: 0 5px;
     cursor: pointer;
@@ -196,7 +197,7 @@ section .main_btn:hover i{
     text-decoration: none;
     color: #fff;
     position: relative;
-    left: 780px;
+    left: 900px;
     bottom: 0px;
 	width: 150px;
 	 cursor: pointer;
