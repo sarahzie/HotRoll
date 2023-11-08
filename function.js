@@ -24,6 +24,29 @@ const auth = firebase.auth()
 const database = firebase.database()
 const adminUIDList = [];
 const staffUIDList = [];
+var orderList = [];
+
+function SelectAllData(){
+  document.getElementById("tbody1").innerHTML = "";
+  no = 0;
+  count = 0;
+  firebase.database().ref('order').once('value',
+    function(AllRecords){
+        AllRecords.forEach(
+            function(CurrentRecord){
+              if (auth.currentUser.uid==CurrentRecord.val().uid){
+                var order_id = CurrentRecord.val().id;
+                var item = CurrentRecord.val().item;
+                var price = CurrentRecord.val().price;
+                var date = CurrentRecord.val().date;
+                var status = CurrentRecord.val().status;
+                AddItemsToTable(order_id,item,price,date,status);
+                count++; 
+              }
+            }
+        );
+    });
+}
 
 firebase.database().ref('staff').once('value',
       function(AllRecords){
@@ -408,4 +431,33 @@ function profile(){
       // ...
     }
   });
+}
+
+window.onload = SelectAllData;
+
+function AddItemsToTable(order_id,item,price,date,status){
+    var tbody = document.getElementById('tbody1');
+    var trow = document.createElement('tr');
+    var td1 = document.createElement('td');
+    var td2 = document.createElement('td');
+    var td4 = document.createElement('td');
+    var td5 = document.createElement('td');
+    var td6 = document.createElement('td');
+    var td7 = document.createElement('td');
+    orderList.push([order_id,item,price,date,status]);
+
+    td1.innerHTML = ++no;
+    td2.innerHTML = order_id;
+    td4.innerHTML = item;
+    td5.innerHTML = price;
+    td6.innerHTML = date;
+    td7.innerHTML = status;
+
+    trow.appendChild(td1);
+    trow.appendChild(td2);
+    trow.appendChild(td4);
+    trow.appendChild(td5);
+    trow.appendChild(td6);
+    trow.appendChild(td7);
+    tbody.appendChild(trow);
 }

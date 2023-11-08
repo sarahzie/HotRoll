@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>View Order</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="order.css">
+    </head>
+    <body>
+        <section id="Home">
+            <nav>
+                <div class="logo">
+                    <img src="logo.png">
+                </div>
+                <ul>
+                    <li><a href="..\..\Admin\Homepage\homepage.html">Home</a></li>
+                    <li><a href="..\..\Admin\Menu\menu.html">Menu</a></li>
+                    <li><a href="..\..\Admin\Staff\staff.html">Staff</a></li>
+                    <li><a href="..\..\Admin\Customer\customer.html">Customer</a></li>
+                    <li><a href="..\..\Admin\Customer\order.html">Order</a></li>
+                    <li><a href="..\..\Admin\Feedback\feedback.html">Feedback</a></li>
+                    <li><a href="..\..\LogIn.html" class="link">Sign In/Up</a></li>
+                </ul>
+                <div class="icon">
+                    <i><a href="..\Profile\profile.html"><i class="fa-solid fa-user"></i></a>
+                    <i class="fa-solid fa-heart"></i>
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </div>
+            </nav>
+        </section>
+        <div class="w3-container  w3-xxxlarge" id="menu">
+            <h1 class="w3-center w3-jumbo" >Order List</h1>
+            <table class="center" >
+                <thead style="text-align: left;">
+                <th>No</th>
+                <th>Order ID</th>
+                <th>UID</th>
+                <th>Item</th>
+                <th>Price</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Control</th>
+            </thead>
+            <tbody class="center" id="tbody1">
+              
+            </tbody>
+           </table> 
+         </div>
+    </body>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+    https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+    <!-- Our script must be loaded after firebase references -->
+    <script src="order.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</html>
